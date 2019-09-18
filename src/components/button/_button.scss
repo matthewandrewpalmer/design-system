@@ -14,11 +14,15 @@ $button-border-height: 3px;
   font-weight: 600;
   line-height: 1.15;
 
+  text-decoration: none;
   text-rendering: optimizeLegibility;
 
   vertical-align: top;
-
   cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
 
   &__inner {
     display: inherit;
@@ -34,14 +38,18 @@ $button-border-height: 3px;
     pointer-events: none;
   }
 
+  &:focus {
+    outline: 3px solid transparent;
+
+    .btn__inner {
+      color: $color-focus-text;
+      background-color: $color-focus;
+    }
+  }
+
   // When preceded by another button (e.g. in a group)
   & + & {
     margin-left: 0.5rem;
-  }
-
-  &:focus {
-    outline: 3px solid $color-focus;
-    outline-offset: 3px;
   }
 
   // When clicked
@@ -92,10 +100,13 @@ $button-border-height: 3px;
     }
   }
 
+  &--link:focus &__inner {
+    background: $color-focus;
+    color: $color-focus-text;
+  }
+
   &--link &__inner {
     &:after {
-      @include icon($name: 'chevron-right-white', $height: 0.8rem);
-
       content: '';
 
       margin: 0 0 0 0.5rem;
@@ -103,9 +114,51 @@ $button-border-height: 3px;
     }
   }
 
-  &--link.btn--small &__inner {
+  &--link:not(.btn--secondary) &__inner {
+    &:after {
+      @include icon($name: 'chevron-right-white', $height: 0.8rem);
+    }
+  }
+
+  &--link:focus:not(.btn--secondary) &__inner {
+    &:after {
+      @include icon($name: 'chevron-right-black', $height: 0.8rem);
+    }
+  }
+
+  &--link.btn--small:not(.btn--secondary) &__inner {
     &:after {
       @include icon($name: 'chevron-right-white', $height: 0.7rem);
+    }
+  }
+
+  &--link:focus.btn--small:not(.btn--secondary) &__inner {
+    &:after {
+      @include icon($name: 'chevron-right-black', $height: 0.7rem);
+    }
+  }
+
+  &--link.btn--secondary &__inner {
+    &:after {
+      @include icon($name: 'chevron-right', $height: 0.8rem);
+    }
+  }
+
+  &--link:focus.btn--secondary &__inner {
+    &:after {
+      @include icon($name: 'chevron-right-black', $height: 0.8rem);
+    }
+  }
+
+  &--link.btn--small.btn--secondary &__inner {
+    &:after {
+      @include icon($name: 'chevron-right', $height: 0.7rem);
+    }
+  }
+
+  &--link:focus.btn--small.btn--secondary &__inner {
+    &:after {
+      @include icon($name: 'chevron-right-black', $height: 0.7rem);
     }
   }
 
@@ -128,6 +181,12 @@ $button-border-height: 3px;
       opacity: 0;
 
       transition: opacity 0.3s ease-in-out;
+    }
+  }
+
+  &--loader:focus &__inner {
+    &:after {
+      @include icon($name: 'loader-black', $height: 1.5em);
     }
   }
 
