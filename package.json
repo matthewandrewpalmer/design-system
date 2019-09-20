@@ -145,6 +145,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ons/design-system": "^13.3.0"
+    "@ons/design-system": "^13.3.0",
+    "@ons/design-system/13.6.7": "npm:@ons/design-system@13.6.7"
   }
 }
